@@ -55,7 +55,7 @@ $ JavaScript syntax is the set of rules, how JavaScript programs are constructed
 & 3. JavaScript uses the keywords var, let and const to declare variables.
     ; let x = 5;
     ; var y = 6;
-    ; const x = 3
+    ; const z = 3;
 
 * An expression is a combination of values, variables, and operators, which computes to a value. (The computation is called an evaluation. For example, 5 * 10 evaluates to 50)
 
@@ -63,7 +63,7 @@ $ JavaScript syntax is the set of rules, how JavaScript programs are constructed
 
 
 @@@@ Comments
-$ Not all JavaScript statements are "executed" Code after double slashes // or between /* and *\/ is treated as a comment. Comments are ignored, and will not be executed
+$ Not all JavaScript statements are "executed" Code after double slashes // or between /* and */ /* is treated as a comment. Comments are ignored, and will not be executed
 
 
 @@@@ JavaScript Variables
@@ -83,7 +83,7 @@ $ var =>  must not be Declared before use.
 $ the code is working
 
 !! Here two var (x) are different 
-! remember that functional scope and global scope are other things
+! remember that functional scope and global scope are others scope,
 ; var x = 5;
 ; console.log(x) // result 5
 ; functions myFunc(){
@@ -154,7 +154,7 @@ $ A new RegExp
 &  %=     	    x %= y	    x = x % y
 &  **=          x **= y	    x = x ** y
 
-$ When used on strings, the + operator is called the concatenation operator.
+!! When used on strings, the + operator is called the concatenation operator. 
 ; const x = "first Strings" + " " + "second Strings" // x = "first Strings second Strings"
 
 @@ JavaScript Comparison Operators
@@ -311,9 +311,9 @@ $ Methods like call(), apply(), and bind() can refer this to any object.
 & ==> stringText.lastIndexOf("ABCDE")
 & ==> stringText.search("ABCDE")
 & ==> stringText.match("D")
-& ==> stringText.includes("D",2)
-& ==> stringText.startsWith("ABCDE",7);
-& ==> stringText.endsWith("CD",7);
+& ==> stringText.includes("D",2)            // Returns true || false
+& ==> stringText.startsWith("ABCDE",7);     // Returns true || false
+& ==> stringText.endsWith("CD",7);          // Returns true || false
 
 !! Converting a String to an Array. 
 & stringText.split("")
@@ -399,13 +399,13 @@ $ If you want to replace all matches, use a regular expression with the /g flag 
 ; let text1 = "      Hello World!      ";
 ; let text2 = text1.trim(); // Returns "Hello World"
 
-% JavaScript String Padding
+@@ JavaScript String Padding
 
-^ JavaScript String padStart()
+$ JavaScript String padStart()
 ; let text = "5";
 ; let padded = text.padStart(4,"x"); // Returns "xxxx5"
 
-^ JavaScript String padEnd()
+$ JavaScript String padEnd()
 ; let text = "5";
 ; let padded = text.padEnd(4,"0"); // Returns "5xxxx"
 
@@ -461,8 +461,8 @@ $ The indexOf() method returns the index of (the position of) the first occurren
 $ The lastIndexOf() method returns the index of the last occurrence of a specified text in a string:
 ; str.lastIndexOf("locate"); // Returns 21
 
-! Both indexOf(), and lastIndexOf() return -1 if the text is not found:
-! Both methods accept a second parameter as the starting position for the search:
+! Both indexOf(), and lastIndexOf() return -1 if the text is not found
+! Both methods accept a second parameter as the starting position for the search
 ; str.str.indexOf("universe"); // Returns 28
 
 % JavaScript String search()
@@ -473,7 +473,7 @@ $ The search() method searches a string for a specified value and returns the po
 
 ^ JavaScript String match()
 $ The match() method searches a string for a match against a regular expression, and returns the matches, as an Array object.
-
+; str.match("0"); // Returns ['o', index: 8, input: "Please locate where 'locate' occurs!", groups: undefined]
 
 ^ JavaScript String includes()
 $ The includes() method returns true if a string contains a specified value.
@@ -530,7 +530,7 @@ $ Template literals allow variables in strings
 & ==>
 & ==> let newNumber = 0xFF;     // Hexadecimal (255)
 & ==> let newNumber = 051;      // Octal (41)
-& ==> let newNumber = 41;       // Hexadecimal (41)
+& ==> let newNumber = 41;       // Decimal (41)
 & ==> (3+120.554).valueOf();    // Returns 123.554
 & ==> 
 & ==> Number("10.33");          //Return 10.33
@@ -582,7 +582,7 @@ $ To solve the problem above, it helps to multiply and divide:
 ; const xy = x * y; // Returns 12;
 ; const xy = x / y; // Returns .75;
 ; const xy = x - y; // Returns -1;
-!! + is not. 
+!! + is not working because here (in String) "+" is concatenation. 
 
 @ NaN - Not a Number
 ! NaN is a JavaScript reserved word indicating that a number is not a legal number.
@@ -615,7 +615,7 @@ $ JavaScript interprets numeric constants as hexadecimal if they are preceded by
 $ By default, JavaScript displays numbers as base 10 decimals.
 $ But you can use the toString() method to output numbers from base 2 to base 36.
 * Name 	        base (2-36)
-* Other called base, Alphanumeric  
+* Other called base, (Alphanumeric)  
 & Hexadecimal   16
 & Decimal       10
 & Octal         8
@@ -665,18 +665,18 @@ $ toFixed() returns a string, with the number written with a specified number of
 % The toPrecision() Method
 $ toPrecision() returns a string, with a number written with a specified length
 ; let x = 9.656;
-; x.toPrecision();  // Returns 9.656
-; x.toPrecision(2);  // Returns 9.7
-; x.toPrecision(4);  // Returns 9.656
-; x.toPrecision(6);  // Returns 9.65600
+; x.toPrecision();      // Returns 9.656
+; x.toPrecision(2);     // Returns 9.7
+; x.toPrecision(4);     // Returns 9.656
+; x.toPrecision(6);     // Returns 9.65600
 
 % The valueOf() Method
 $ valueOf() returns a number as a number.
 ; let x = 123;  
-; x.valueOf();   // Returns 123
-; (123).valueOf();  // Returns 123
-; (3+120.554).valueOf();  // Returns 123.554
-; (100 + 23).valueOf();  // Returns 123
+; x.valueOf();              // Returns 123
+; (123).valueOf();          // Returns 123
+; (3+120.554).valueOf();    // Returns 123.554
+; (100 + 23).valueOf();     // Returns 123
 $ In JavaScript, a number can be a primitive value (typeof => number) or an object (typeof => object).
 $ The valueOf() method is used internally in JavaScript to convert Number objects to primitive values.
 $ There is no reason to use it in your code.
@@ -737,7 +737,7 @@ $ parseInt() parses a string and returns a whole number. Spaces are allowed. Onl
 
 
 @ Number Properties 
-* Property	            Values          Description
+* Property	            Values(Returns) Description
 & MAX_VALUE	            1.7976e+308     Returns the largest number possible in JavaScript 
 & MIN_VALUE	            5e-324          Returns the smallest number possible in JavaScript
 & POSITIVE_INFINITY     Infinity        Represents infinity (returned on overflow)
@@ -753,12 +753,18 @@ $ parseInt() parses a string and returns a whole number. Spaces are allowed. Onl
 !! Using myNumber.MAX_VALUE, where myNumber is a variable, expression, or value, will return undefined:
 
 ; let x = 6;
-; x.MAX_VALUE;  // Returns undefined
-; x.MIN_VALUE;  // Returns undefined
+; x.MAX_VALUE;          // Returns undefined
+; x.MIN_VALUE;          // Returns undefined
 ; x.POSITIVE_INFINITY;  // Returns undefined
 ; x.NEGATIVE_INFINITY;  // Returns undefined
-; x.NaN;  // Returns undefined
- 
+; x.NaN;                // Returns undefined
+* Those code is not working.
+
+; Number.MAX_VALUE              // Returns 1.7976e+308  
+; Number.MIN_VALUE              // Returns 5e-324 
+; Number.POSITIVE_INFINITY      // Returns Infinity
+; Number.NEGATIVE_INFINITY      // Returns -Infinity
+; Number.NaN                    // Returns NaN
 
 #### JavaScript Arrays
 * At a glance Array
@@ -860,6 +866,7 @@ $ You can have objects in an Array. You can have functions in an Array. You can 
 & Accessing the Last Array Element => arr[arr.length -1]
 
 * Array.forEach()
+& Return undefined array,
 ; const fruits = ["Banana", "Orange", "Apple", "Mango"];
 
 ; function myFunction(value) {
@@ -870,10 +877,10 @@ $ You can have objects in an Array. You can have functions in an Array. You can 
 ; fruits.forEach(myFunction);
 ; text += "</ul>";
 
+* arr.pop();  // Delete the last element of array.
+* arr.shift(); // Delete the first element of array.
 * arr.push("Lemon");  // Add a new element last index of array.
-* arr.pop("Lemon");  // Delete the last element of array.
-* arr.shift("Lemon");  // Add a new element first index of array.
-* arr.unshift("Lemon");  // Delete the first element of array.
+* arr.unshift("Lemon");   // Add a new element first index of array.
 
 & New element can also be added to an array using the length property
 ; const fruits = ["Banana", "Orange", "Apple"];
@@ -957,8 +964,8 @@ $ The concat() method can also take strings as arguments:
 ;  const myChildren = arr1.concat("Peter"); 
 
 * Splicing and Slicing Arrays
-$ The splice() method adds new items to an array.
-$ The slice() method slices out a piece of an array.
+$ The splice() method adds new items to an array. // main array will change 
+$ The slice() method slices out a piece of an array. // main array will change
 
 
 % JavaScript Array splice() 
@@ -995,6 +1002,8 @@ $ This example slices out a part of an array starting from array element 1 ("Ora
 ! The slice() method does not remove any elements from the source array.
 ;const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
 ;const citrus = fruits.slice(3); // Returns ["Apple", "Mango"]
+;const citrus = fruits.slice(399); // Returns []
+;const citrus = fruits.slice(-3); // Returns ["Banana", "Orange", "Lemon", "Apple", "Mango"]
 
 $ The slice() method can take two arguments like slice(1, 3).
 $ The method then selects elements from the start argument, and up to (but not including) the end argument.
@@ -1023,7 +1032,7 @@ $ You can fix this by providing a compare function:
 
 !! The Compare Function
 $ The purpose of the compare function is to define an alternative sort order.
-$ The compare function should return a negative, zero, or positive value, depending on the arguments:
+$ The compare function should return a negative, zero, or positive value, depending on the arguments
 ; function(a, b){return a - b}
 $ When the sort() function compares two values, it sends the values to the compare function, and sorts the values according to the returned (negative, zero, positive) value.
 $ If the result is negative a is sorted before b.
